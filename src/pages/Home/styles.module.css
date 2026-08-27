@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 80px;
+  min-height: 100vh;
+  gap: 24px;
+}
+
+
+main {
+  display: grid;
+  grid-template-columns: 68% 30%;
+  height: 70vh;
+  justify-content: space-between;
+}
+
+.breakingNewsContainer {
+  position: relative;
+  background-image: url('../../assets/Tecnico-do-Benfica-Jose-Mourinho-em-coletiva-de-imprensa-da-Champions-League-scaled-aspect-ratio-512-320-1.webp');
+  background-size: cover;
+  border-radius: 8px;
+}
+
+.breakingNewsContent {
+  position: absolute;
+  bottom: 24px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.breakingNewsBadge {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #006B28;
+  border-radius: 5px;
+  padding: 8px;
+  width: fit-content;
+}
+
+.breakingNewsDescription {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(234, 241, 255, 0.8);
+}
+
+.breakingNewsTitle {
+  font-size: 32px;
+  color: #EAF1FF;
+  font-weight: bold;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* justify-content: space-between; */
+}
+
+aside div {
+  border: solid 1px #BDCAB9;
+  height: 100%;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.transferRumorBadge {
+  color: #994100;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rightNewsTitle {
+  font-size: 24px;
+  color: #0B1C30;
+  font-weight: 600;
+}
+
+.injuryBadge {
+  font-size: 14px;
+  color: #565E74;
+  font-weight: bold;
+}
+
+.newsClock {
+  font-size: 12px;
+  color: #3E4A3D;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 8px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.lastNewsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px #BDCAB9;
+  padding-bottom: 3px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.linkWrapper {
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+}
+
+.allNewsLink {
+  color: #006B28;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+}
+
+.allNewsLink::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: #006B28;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.allNewsLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.lastNewsTitle {
+  color: #0B1C30;
+  font-size: 48px;
+}
+
+.lastNewsContainer {
+  display: flex;
+  /* gap: 16px; */
+  /* width: 100%; */
+  justify-content: space-between;
+}
