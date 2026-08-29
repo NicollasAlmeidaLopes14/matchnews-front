@@ -23,7 +23,7 @@ function Home() {
           </div>
         </div>
 
-        <aside>
+        <aside className={styles.aside}>
           <div>
             <span className={styles.transferRumorBadge}>Rumor transferencia</span>
 
