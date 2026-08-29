@@ -1,0 +1,125 @@
+.container {
+    position: relative;
+    padding: 40px 24px;
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.title {
+    font-size: 48px;
+    color: #0B1C30;
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.link {
+    color: #006B28;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+    width: fit-content;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: -2px;
+    left: 0;
+    background-color: #006B28;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.filtersContainer {
+    padding: 24px 24px 48px;
+    background-color: #FFFFFF;
+    width: 256px;
+    /* position: absolute; */
+    border: solid 1px #BDCAB9;
+    border-radius: 4px;
+    height: 428px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filtersTitle {
+    font-size: 24px;
+    color: #006B28;
+    font-weight: 600;
+}
+
+.serachIcon {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    color: #3E4A3D;
+}
+
+.serachInput {
+    padding: 9px 16px 9px 32px;
+    border: solid 1px #BDCAB9;
+    height: 44px;
+    outline-color: #006B28;
+}
+
+.serachInput::placeholder {
+    color: #6B7280;
+}
+
+.categoryContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.categorySpan {
+    color: #0B1C30;
+    font-size: 14px;
+}
+
+.categoryLabel {
+    color: #3E4A3D;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkboxInput {
+    transform: scale(1.2);
+    accent-color: #006B28;
+}
+
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.mainContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* position: absolute; */
+    /* right: 10px; */
+    gap: 40px;
+    justify-content: space-between;
+    width: 100%;
+    /* background-color: aqua; */
+}

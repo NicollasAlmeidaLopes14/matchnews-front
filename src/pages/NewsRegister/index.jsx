@@ -18,7 +18,7 @@ function NewsRegister() {
                                     Título da Notícia
                                     <span className={styles.asterisk}>*</span>
                                 </label>
-                                <input id="news-title" placeholder='Ex: Corinthians anuncia contratação de peso' />
+                                <input className={styles.registerInput} id="news-title" placeholder='Ex: Corinthians anuncia contratação de peso' />
                             </div>
 
                             <div className={styles.fieldWrapper}>
@@ -26,7 +26,8 @@ function NewsRegister() {
                                     Resumo
                                     <span className={styles.asterisk}>*</span>
                                 </label>
-                                <textarea name="" id="" placeholder='Breve introdução que aparecerá nos cards da notícia' rows={4}></textarea>
+
+                                <textarea className={styles.registerTextArea} id="" placeholder='Breve introdução que aparecerá nos cards da notícia' rows={4}></textarea>
                             </div>
                         </div>
                     </NewRegisterForm>
@@ -36,7 +37,7 @@ function NewsRegister() {
                         height={'510px'}
                         marginBottom={'124px'}>
                         <div className={styles.basicInformationsContent}>
-                            <textarea name="" id="" placeholder='Escreva o corpo da notícia aqui...' rows={20}></textarea>
+                            <textarea className={styles.registerTextArea} name="" id="" placeholder='Escreva o corpo da notícia aqui...' rows={20}></textarea>
                         </div>
                     </NewRegisterForm>
                 </div>
@@ -71,7 +72,7 @@ function NewsRegister() {
                                     Tags
                                     <span className={styles.asterisk}>*</span>
                                 </label>
-                                <input id="news-title" placeholder='Ex: Futebol Brasileiro' />
+                                <input className={styles.registerInput} id="news-title" placeholder='Ex: Futebol Brasileiro' />
                             </div>
                         </div>
                     </NewRegisterForm>

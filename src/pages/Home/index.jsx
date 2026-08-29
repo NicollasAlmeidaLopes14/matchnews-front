@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <main>
+      <main className={styles.homeMain}>
         <div className={styles.breakingNewsContainer}>
 
           <div className={styles.breakingNewsContent}>
@@ -53,7 +53,7 @@ function Home() {
           <h1 className={styles.lastNewsTitle}>Últimas Notícias</h1>
 
           <div className={styles.linkWrapper}>
-            <Link className={styles.allNewsLink}>
+            <Link className={styles.allNewsLink} to={'/noticias'}>
               Ver todas
               <FaArrowRight />
             </Link>

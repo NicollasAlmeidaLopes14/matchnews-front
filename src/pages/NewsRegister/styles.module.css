@@ -48,8 +48,8 @@ label,
     padding-left: 2px;
 }
 
-input,
-textarea,
+.registerInput,
+.registerTextArea,
 .select {
     border: solid 1px #BDCAB9;
     padding: 17px 24px;
@@ -63,7 +63,7 @@ textarea,
     color: #6B7280;
 }
 
-textarea {
+.registerTextArea {
     resize: none;
 }
 

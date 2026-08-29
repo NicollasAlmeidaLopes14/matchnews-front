@@ -7,7 +7,7 @@
 }
 
 
-main {
+.homeMain {
   display: grid;
   grid-template-columns: 68% 30%;
   height: 70vh;
@@ -155,7 +155,5 @@ section {
 
 .lastNewsContainer {
   display: flex;
-  /* gap: 16px; */
-  /* width: 100%; */
   justify-content: space-between;
 }
