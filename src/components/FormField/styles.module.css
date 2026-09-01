@@ -1,0 +1,88 @@
+.field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    color: #203448;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.required {
+    margin-left: 3px;
+    color: #c23d3d;
+}
+
+.controlWithIcon {
+    position: relative;
+}
+
+.fieldIcon {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 14px;
+    display: grid;
+    color: #758178;
+    font-size: 19px;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.control {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid #cdd8d1;
+    border-radius: 10px;
+    outline: none;
+    padding: 13px 15px;
+    color: #071a2f;
+    background: #fbfdfc;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.55;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.control::placeholder {
+    color: #929d95;
+}
+
+.control:hover {
+    border-color: #a9b8ae;
+    background: #ffffff;
+}
+
+.control:focus {
+    border-color: #0b9150;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(11, 145, 80, 0.11);
+}
+
+.withIcon {
+    padding-left: 43px;
+}
+
+textarea.control {
+    display: block;
+    resize: vertical;
+}
+
+select.control {
+    cursor: pointer;
+}
+
+.hint {
+    color: #79857c;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .control {
+        transition: none;
+    }
+}

@@ -1,96 +1,183 @@
+import { Link } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import {
+    MdArrowBack,
+    MdArticle,
+    MdCheckCircle,
+    MdLink,
+    MdOutlineTipsAndUpdates,
+    MdPersonOutline,
+    MdPublish,
+    MdTune,
+} from 'react-icons/md'
+
+import NewsRegisterForm from '../../components/NewsRegisterForm'
+import FormField from '../../components/FormField'
 import styles from './styles.module.css'
 
-import NewRegisterForm from '../../components/NewsRegisterForm';
-
-import { MdCloudUpload, MdPublish } from "react-icons/md";
+const categoryOptions = [
+    { value: 'ultimas-noticias', label: 'Últimas notícias' },
+    { value: 'mercado-da-bola', label: 'Mercado da bola' },
+    { value: 'entrevista', label: 'Entrevista' },
+    { value: 'analise-tatica', label: 'Análise tática' },
+]
 
 function NewsRegister() {
+    function handleSubmit(event) {
+        event.preventDefault()
+
+        toast.success('Notícia pronta para publicação!', {
+            position: 'bottom-right',
+        })
+    }
+
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Cadastrar Nova Notícia</h1>
+        <div className={styles.page}>
+            <ToastContainer autoClose={3500} hideProgressBar />
 
-            <form>
-                <div className={styles.leftContent}>
-                    <NewRegisterForm titulo={'Informações Básicas'} height={'387px'}>
-                        <div className={styles.basicInformationsContent}>
-                            <div className={styles.fieldWrapper}>
-                                <label htmlFor="news-title">
-                                    Título da Notícia
-                                    <span className={styles.asterisk}>*</span>
-                                </label>
-                                <input className={styles.registerInput} id="news-title" placeholder='Ex: Corinthians anuncia contratação de peso' />
-                            </div>
+            <header className={styles.header}>
+                <Link className={styles.backLink} to="/">
+                    <MdArrowBack aria-hidden="true" />
+                    Voltar ao início
+                </Link>
 
-                            <div className={styles.fieldWrapper}>
-                                <label htmlFor="">
-                                    Resumo
-                                    <span className={styles.asterisk}>*</span>
-                                </label>
+                <div className={styles.headingRow}>
+                    <div>
+                        <span className={styles.eyebrow}>MatchNews · Painel editorial</span>
+                        <h1 className={styles.title}>Cadastrar nova notícia</h1>
+                        <p className={styles.subtitle}>
+                            Organize as informações da matéria antes de publicar para os leitores.
+                        </p>
+                    </div>
 
-                                <textarea className={styles.registerTextArea} id="" placeholder='Breve introdução que aparecerá nos cards da notícia' rows={4}></textarea>
-                            </div>
-                        </div>
-                    </NewRegisterForm>
-
-                    <NewRegisterForm
-                        titulo={'Conteúdo da Matéria'}
-                        height={'510px'}
-                        marginBottom={'124px'}>
-                        <div className={styles.basicInformationsContent}>
-                            <textarea className={styles.registerTextArea} name="" id="" placeholder='Escreva o corpo da notícia aqui...' rows={20}></textarea>
-                        </div>
-                    </NewRegisterForm>
+                    <div className={styles.statusBadge}>
+                        <span className={styles.statusDot} />
+                        Novo conteúdo
+                    </div>
                 </div>
+            </header>
 
-                <aside className={styles.aside}>
-                    <NewRegisterForm titulo={'Mídia Destaque'} width={'280px'}>
-                        <label htmlFor="file-input" className={styles.uploadLabel}>
-                            <MdCloudUpload className={styles.uploadIcon} />
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <main className={styles.mainColumn}>
+                    <NewsRegisterForm
+                        icon={<MdArticle aria-hidden="true" />}
+                        title="Informações principais"
+                        description="O título e o resumo são a primeira impressão da sua notícia."
+                    >
+                        <div className={styles.fieldsGroup}>
+                            <FormField
+                                id="news-title"
+                                label="Título da notícia"
+                                placeholder="Ex.: Clube anuncia novo reforço para a temporada"
+                                maxLength={120}
+                                required
+                            />
 
-                            <p className={styles.fileInputDescription}>Arraste uma imagem ou
-                                clique para fazer upload</p>
-                            <span className={styles.recomendationSpan}>Recomendado: 1200x670px {'(16:9)'}</span>
-
-                            <input type="file" id='file-input' className={styles.fileInput} />
-                        </label>
-                    </NewRegisterForm>
-
-                    <NewRegisterForm titulo={'Classificação'} width={'280px'}>
-                        <div className={styles.classificationContainer}>
-                            <div className={styles.selectWrapper}>
-                                <span className={styles.selectSpan}>Categoria</span>
-                                <select name="" id="" className={styles.select}>
-                                    <option value="">Últimas Notícias</option>
-                                    <option value="">Mercado da bola</option>
-                                    <option value="">Entrevista</option>
-                                    <option value="">Analise Tática</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.fieldWrapper}>
-                                <label htmlFor="news-title">
-                                    Tags
-                                    <span className={styles.asterisk}>*</span>
-                                </label>
-                                <input className={styles.registerInput} id="news-title" placeholder='Ex: Futebol Brasileiro' />
-                            </div>
+                            <FormField
+                                id="news-summary"
+                                label="Resumo"
+                                placeholder="Apresente o ponto principal da notícia em poucas linhas."
+                                hint="Este texto poderá aparecer nos cards da notícia."
+                                maxLength={240}
+                                rows={4}
+                                as="textarea"
+                                required
+                            />
                         </div>
-                    </NewRegisterForm>
+                    </NewsRegisterForm>
+
+                    <NewsRegisterForm
+                        icon={<MdArticle aria-hidden="true" />}
+                        title="Conteúdo da matéria"
+                        description="Desenvolva os fatos com clareza e destaque as informações mais relevantes."
+                    >
+                        <FormField
+                            id="news-content"
+                            label="Texto da notícia"
+                            placeholder="Escreva o corpo completo da notícia aqui..."
+                            rows={13}
+                            as="textarea"
+                            required
+                        />
+                    </NewsRegisterForm>
+                </main>
+
+                <aside className={styles.sidebar}>
+                    <NewsRegisterForm
+                        icon={<MdTune aria-hidden="true" />}
+                        title="Dados editoriais"
+                        description="Defina como a matéria será identificada."
+                        compact
+                    >
+                        <div className={styles.fieldsGroup}>
+                            <FormField
+                                id="news-category"
+                                label="Categoria"
+                                as="select"
+                                defaultValue=""
+                                required
+                            >
+                                <option value="" disabled>Selecione uma categoria</option>
+                                {categoryOptions.map((category) => (
+                                    <option key={category.value} value={category.value}>
+                                        {category.label}
+                                    </option>
+                                ))}
+                            </FormField>
+
+                            <FormField
+                                id="news-author"
+                                label="Autor responsável"
+                                placeholder="Ex.: Redação MatchNews"
+                                icon={<MdPersonOutline aria-hidden="true" />}
+                                required
+                            />
+                        </div>
+                    </NewsRegisterForm>
+
+                    <NewsRegisterForm
+                        icon={<MdLink aria-hidden="true" />}
+                        title="Fonte da informação"
+                        description="Registre a origem usada na apuração."
+                        compact
+                    >
+                        <FormField
+                            id="news-source"
+                            label="Fonte ou referência"
+                            placeholder="Ex.: Site oficial do clube"
+                            hint="Pode ser o nome de um veículo, clube ou entrevistado."
+                        />
+                    </NewsRegisterForm>
+
+                    <div className={styles.tipCard}>
+                        <MdOutlineTipsAndUpdates className={styles.tipIcon} aria-hidden="true" />
+                        <div>
+                            <strong>Antes de publicar</strong>
+                            <p>Revise nomes, datas e números. Uma fonte clara aumenta a confiança do leitor.</p>
+                        </div>
+                    </div>
                 </aside>
+
+                <footer className={styles.actionBar}>
+                    <div className={styles.actionHint}>
+                        <MdCheckCircle aria-hidden="true" />
+                        Os campos com * são obrigatórios
+                    </div>
+
+                    <div className={styles.actions}>
+                        <Link className={styles.cancelButton} to="/">
+                            Cancelar
+                        </Link>
+
+                        <button className={styles.publishButton} type="submit">
+                            <MdPublish aria-hidden="true" />
+                            Publicar notícia
+                        </button>
+                    </div>
+                </footer>
             </form>
-
-            <footer className={styles.footer}>
-                <div className={styles.btnsContainer}>
-                    <button className={styles.cancelBtn}>Cancelar</button>
-
-                    <button className={styles.publishBtn}>
-                        <MdPublish />
-                        Publicar Notícia
-                    </button>
-                </div>
-            </footer>
         </div>
     )
 }
 
-export default NewsRegister;
+export default NewsRegister

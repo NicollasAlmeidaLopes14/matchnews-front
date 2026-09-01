@@ -1,15 +1,19 @@
 import styles from './styles.module.css'
 
-function NewRegisterForm({ titulo, marginBottom, height, width, children }) {
+function NewsRegisterForm({ title, description, icon, compact = false, children }) {
     return (
-        <div className={styles.container} style={{ '--container-width': width, '--container-height': height, '--container-margin': marginBottom }}>
-            <h2 className={styles.title}>{titulo}</h2>
+        <section className={`${styles.container} ${compact ? styles.compact : ''}`}>
+            <header className={styles.header}>
+                <span className={styles.iconWrapper}>{icon}</span>
+                <div>
+                    <h2 className={styles.title}>{title}</h2>
+                    {description && <p className={styles.description}>{description}</p>}
+                </div>
+            </header>
 
-            <>
-                {children}
-            </>
-        </div>
+            <div className={styles.content}>{children}</div>
+        </section>
     )
 }
 
-export default NewRegisterForm;
+export default NewsRegisterForm
