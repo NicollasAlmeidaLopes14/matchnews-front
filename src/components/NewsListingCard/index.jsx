@@ -1,19 +1,46 @@
+import { MdAccessTime, MdPersonOutline } from 'react-icons/md'
+
 import styles from './styles.module.css'
 
-function NewsListingCard({ category, img, timesTamp, title, description }) {
+function NewsListingCard({
+    category,
+    img,
+    imgAlt = '',
+    publishedAt,
+    readTime,
+    author,
+    title,
+    description,
+    featured = false,
+}) {
     return (
-        <div className={styles.container}>
-            <span className={styles.categoryBadge}>{category}</span>
-            <div className={styles.imageContainer} style={{ backgroundImage: `url(${img})` }}></div>
-
-            <div className={styles.cardContent}>
-                <span className={styles.newsDate}>{timesTamp}</span>
-
-                <h3 className={styles.cardTitle}>{title}</h3>
-                <p className={styles.cardDescription}>{description}</p>
+        <article className={`${styles.card} ${featured ? styles.featured : ''}`}>
+            <div className={styles.imageWrapper}>
+                <img className={styles.image} src={img} alt={imgAlt} />
+                <span className={styles.categoryBadge}>{category}</span>
             </div>
-        </div>
+
+            <div className={styles.content}>
+                <div className={styles.metadata}>
+                    <span>
+                        <MdAccessTime aria-hidden="true" />
+                        {publishedAt}
+                    </span>
+                    <span>{readTime}</span>
+                </div>
+
+                <h3 className={styles.title}>{title}</h3>
+                <p className={styles.description}>{description}</p>
+
+                <div className={styles.author}>
+                    <span className={styles.authorIcon}>
+                        <MdPersonOutline aria-hidden="true" />
+                    </span>
+                    <span>{author}</span>
+                </div>
+            </div>
+        </article>
     )
 }
 
-export default NewsListingCard;
+export default NewsListingCard
