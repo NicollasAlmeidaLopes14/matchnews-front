@@ -1,17 +1,16 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import Home from "./pages/Home";
 import NewsListing from "./pages/NewsListing";
 import NewsRegister from "./pages/NewsRegister";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Home />
+        element: <NewsListing />
     },
     {
         path: '/noticias',
-        element: <NewsListing />
+        element: <Navigate to="/" replace />
     },
     {
         path: '/cadastro-noticias',

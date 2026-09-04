@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { MdArrowBack, MdOutlineArticle } from 'react-icons/md'
+import { MdOutlineArticle } from 'react-icons/md'
 
 import NewsListingCard from '../../components/NewsListingCard'
 import SiteHeader from '../../components/SiteHeader'
@@ -79,14 +78,9 @@ const newsItems = [
 function NewsListing() {
     return (
         <div className={styles.page}>
-            <SiteHeader activePage="news" />
+            <SiteHeader />
 
             <header className={styles.header}>
-                <Link className={styles.backLink} to="/">
-                    <MdArrowBack aria-hidden="true" />
-                    Voltar ao início
-                </Link>
-
                 <div className={styles.headerContent}>
                     <div>
                         <span className={styles.eyebrow}>Central de notícias</span>

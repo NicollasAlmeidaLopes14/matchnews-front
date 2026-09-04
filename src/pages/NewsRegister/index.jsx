@@ -38,7 +38,7 @@ function NewsRegister() {
             <header className={styles.header}>
                 <Link className={styles.backLink} to="/">
                     <MdArrowBack aria-hidden="true" />
-                    Voltar ao início
+                    Voltar para as notícias
                 </Link>
 
                 <div className={styles.headingRow}>

@@ -3,7 +3,7 @@ import { MdAdd } from 'react-icons/md'
 
 import styles from './styles.module.css'
 
-function SiteHeader({ activePage }) {
+function SiteHeader() {
     return (
         <header className={styles.header}>
             <Link className={styles.brand} to="/" aria-label="Ir para a página inicial do MatchNews">
@@ -13,16 +13,9 @@ function SiteHeader({ activePage }) {
 
             <nav className={styles.navigation} aria-label="Navegação principal">
                 <Link
-                    className={`${styles.navLink} ${activePage === 'home' ? styles.active : ''}`}
+                    className={`${styles.navLink} ${styles.active}`}
                     to="/"
-                    aria-current={activePage === 'home' ? 'page' : undefined}
-                >
-                    Início
-                </Link>
-                <Link
-                    className={`${styles.navLink} ${activePage === 'news' ? styles.active : ''}`}
-                    to="/noticias"
-                    aria-current={activePage === 'news' ? 'page' : undefined}
+                    aria-current="page"
                 >
                     Notícias
                 </Link>
