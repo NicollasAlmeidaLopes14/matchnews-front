@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { MdAdd, MdArrowBack, MdOutlineArticle } from 'react-icons/md'
+import { MdArrowBack, MdOutlineArticle } from 'react-icons/md'
 
 import NewsListingCard from '../../components/NewsListingCard'
+import SiteHeader from '../../components/SiteHeader'
 import testImage from '../../assets/Tecnico-do-Benfica-Jose-Mourinho-em-coletiva-de-imprensa-da-Champions-League-scaled-aspect-ratio-512-320-1.webp'
 import styles from './styles.module.css'
 
@@ -78,17 +79,7 @@ const newsItems = [
 function NewsListing() {
     return (
         <div className={styles.page}>
-            <nav className={styles.navigation} aria-label="Navegação da página">
-                <Link className={styles.brand} to="/" aria-label="Ir para a página inicial do MatchNews">
-                    <span className={styles.brandMark}>MN</span>
-                    <span>MatchNews</span>
-                </Link>
-
-                <Link className={styles.registerLink} to="/cadastro-noticias">
-                    <MdAdd aria-hidden="true" />
-                    Nova notícia
-                </Link>
-            </nav>
+            <SiteHeader activePage="news" />
 
             <header className={styles.header}>
                 <Link className={styles.backLink} to="/">

@@ -1,24 +1,34 @@
+import { MdAccessTime, MdPersonOutline } from 'react-icons/md'
+
 import styles from './styles.module.css'
 
-import cardImage from '../../assets/Tecnico-do-Benfica-Jose-Mourinho-em-coletiva-de-imprensa-da-Champions-League-scaled-aspect-ratio-512-320-1.webp'
-
-import { FaRegEye } from "react-icons/fa6";
-
-function LastNewsCard({ topico, titulo, descricao, visualizacoes }) {
+function LastNewsCard({ category, title, description, publishedAt, readTime, author, image, imageAlt = '' }) {
     return (
-        <div className={styles.container}>
-            <span className={styles.topicBadge}>{topico}</span>
-
-            <img src={cardImage} className={styles.cardImage} alt="" />
-
-            <div className={styles.cardTextContainer}>
-                <h2 className={styles.cardTitle}>{titulo}</h2>
-                <p className={styles.cardDescription}>{descricao}</p>
+        <article className={styles.card}>
+            <div className={styles.imageWrapper}>
+                <img src={image} className={styles.image} alt={imageAlt} />
+                <span className={styles.categoryBadge}>{category}</span>
             </div>
 
-            <span className={styles.totalViews}> <FaRegEye /> {visualizacoes}</span>
-        </div>
+            <div className={styles.content}>
+                <div className={styles.metadata}>
+                    <span>
+                        <MdAccessTime aria-hidden="true" />
+                        {publishedAt}
+                    </span>
+                    <span>{readTime}</span>
+                </div>
+
+                <h3>{title}</h3>
+                <p>{description}</p>
+
+                <span className={styles.author}>
+                    <MdPersonOutline aria-hidden="true" />
+                    {author}
+                </span>
+            </div>
+        </article>
     )
 }
 
-export default LastNewsCard;
+export default LastNewsCard
