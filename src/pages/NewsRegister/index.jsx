@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 import {
     MdArrowBack,
     MdArticle,
@@ -14,21 +15,64 @@ import {
 import NewsRegisterForm from '../../components/NewsRegisterForm'
 import FormField from '../../components/FormField'
 import styles from './styles.module.css'
+import { useState } from 'react'
 
 const categoryOptions = [
-    { value: 'ultimas-noticias', label: 'Últimas notícias' },
-    { value: 'mercado-da-bola', label: 'Mercado da bola' },
-    { value: 'entrevista', label: 'Entrevista' },
-    { value: 'analise-tatica', label: 'Análise tática' },
+    'MERCADO DA BOLA',
+    'ENTREVISTA',
+    'ANÁLISE TÁTICA',
+    'CAMPEONATO NACIONAL',
+    'CATEGORIAS DE BASE',
+    'FUTEBOL EUROPEU',
 ]
 
 function NewsRegister() {
-    function handleSubmit(event) {
-        event.preventDefault()
+    const [newsTitle, setNewsTitle] = useState('');
+    const [summary, setSummary] = useState('');
+    const [newsContent, setNewsContent] = useState('');
+    const [category, setCategory] = useState('');
+    const [author, setAuthor] = useState('');
+    const [source, setSource] = useState('');
 
-        toast.success('Notícia pronta para publicação!', {
-            position: 'bottom-right',
-        })
+
+    const navigate = useNavigate();
+
+    const publicarNoticia = async () => {
+        try {
+            const response = await fetch(
+                "http://localhost:8080/noticias", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    titulo: newsTitle,
+                    resumo: summary,
+                    texto: newsContent,
+                    categoria: category,
+                    autor: author,
+                    fonte: source,
+                })
+            }
+            )
+
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+
+            const dados = await response.json();
+
+            toast.success("Notícia cadastrada com sucesso!")
+            return dados
+        } catch (error) {
+            console.error("Erro ao publicar a notícia: " + error)
+            toast.error("Não foi possível publicar a notícia")
+            return null
+        }
+
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        await publicarNoticia()
     }
 
     return (
@@ -70,6 +114,8 @@ function NewsRegister() {
                                 label="Título da notícia"
                                 placeholder="Ex.: Clube anuncia novo reforço para a temporada"
                                 maxLength={120}
+                                value={newsTitle}
+                                onChange={(e) => setNewsTitle(e.target.value)}
                                 required
                             />
 
@@ -79,6 +125,8 @@ function NewsRegister() {
                                 placeholder="Apresente o ponto principal da notícia em poucas linhas."
                                 hint="Este texto poderá aparecer nos cards da notícia."
                                 maxLength={240}
+                                value={summary}
+                                onChange={(e) => setSummary(e.target.value)}
                                 rows={4}
                                 as="textarea"
                                 required
@@ -96,6 +144,8 @@ function NewsRegister() {
                             label="Texto da notícia"
                             placeholder="Escreva o corpo completo da notícia aqui..."
                             rows={13}
+                            value={newsContent}
+                            onChange={(e) => setNewsContent(e.target.value)}
                             as="textarea"
                             required
                         />
@@ -115,12 +165,14 @@ function NewsRegister() {
                                 label="Categoria"
                                 as="select"
                                 defaultValue=""
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
                                 required
                             >
                                 <option value="" disabled>Selecione uma categoria</option>
                                 {categoryOptions.map((category) => (
-                                    <option key={category.value} value={category.value}>
-                                        {category.label}
+                                    <option key={category} value={category}>
+                                        {category}
                                     </option>
                                 ))}
                             </FormField>
@@ -130,6 +182,8 @@ function NewsRegister() {
                                 label="Autor responsável"
                                 placeholder="Ex.: Redação MatchNews"
                                 icon={<MdPersonOutline aria-hidden="true" />}
+                                value={author}
+                                onChange={(e) => setAuthor(e.target.value)}
                                 required
                             />
                         </div>
@@ -146,6 +200,8 @@ function NewsRegister() {
                             label="Fonte ou referência"
                             placeholder="Ex.: Site oficial do clube"
                             hint="Pode ser o nome de um veículo, clube ou entrevistado."
+                            value={source}
+                            onChange={(e) => setSource(e.target.value)}
                         />
                     </NewsRegisterForm>
 

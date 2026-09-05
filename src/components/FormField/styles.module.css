@@ -20,6 +20,10 @@
     position: relative;
 }
 
+.selectWrapper {
+    position: relative;
+}
+
 .fieldIcon {
     position: absolute;
     z-index: 1;
@@ -75,6 +79,47 @@ select.control {
     cursor: pointer;
 }
 
+.selectControl {
+    appearance: none;
+    padding-right: 58px;
+}
+
+.selectControl:invalid {
+    color: #929d95;
+}
+
+.selectControl option {
+    color: #071a2f;
+    background: #ffffff;
+}
+
+.selectIndicator {
+    position: absolute;
+    top: 50%;
+    right: 9px;
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border-radius: 8px;
+    color: #087a43;
+    background: #e4f5eb;
+    font-size: 21px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.selectWrapper:hover .selectIndicator {
+    background: #d7f0e1;
+}
+
+.selectWrapper:focus-within .selectIndicator {
+    color: #ffffff;
+    background: #087a43;
+    box-shadow: 0 4px 10px rgba(8, 122, 67, 0.2);
+}
+
 .hint {
     color: #79857c;
     font-size: 12px;
@@ -83,6 +128,10 @@ select.control {
 
 @media (prefers-reduced-motion: reduce) {
     .control {
+        transition: none;
+    }
+
+    .selectIndicator {
         transition: none;
     }
 }
