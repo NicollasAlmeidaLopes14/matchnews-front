@@ -98,7 +98,7 @@
     letter-spacing: -0.025em;
 }
 
-.description {
+.summary {
     display: -webkit-box;
     overflow: hidden;
     margin-top: 10px;
@@ -151,7 +151,7 @@
     line-height: 1.22;
 }
 
-.featured .description {
+.featured .summary {
     font-size: 14px;
     -webkit-line-clamp: 5;
 }

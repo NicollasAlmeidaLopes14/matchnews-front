@@ -117,35 +117,6 @@
     gap: 22px;
 }
 
-.tipCard {
-    display: flex;
-    gap: 14px;
-    padding: 20px;
-    border: 1px solid #d7eadf;
-    border-radius: 14px;
-    color: #254735;
-    background: #edf8f1;
-}
-
-.tipIcon {
-    flex: 0 0 auto;
-    margin-top: 2px;
-    color: var(--green-700);
-    font-size: 23px;
-}
-
-.tipCard strong {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-.tipCard p {
-    color: #597064;
-    font-size: 13px;
-    line-height: 1.55;
-}
-
 .actionBar {
     position: sticky;
     z-index: 5;
@@ -248,9 +219,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .tipCard {
-        grid-column: 1 / -1;
-    }
 }
 
 @media (max-width: 620px) {

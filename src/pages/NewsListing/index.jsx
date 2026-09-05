@@ -80,6 +80,16 @@ function NewsListing() {
                 </div>
 
                 <div className={styles.newsGrid}>
+                    {!news.length &&
+                        <div className={styles.emptyState} role="status" aria-live="polite">
+                            <span className={styles.emptyStateIcon}>
+                                <MdOutlineArticle aria-hidden="true" />
+                            </span>
+                            <h3>Nenhuma notícia publicada ainda</h3>
+                            <p>Quando publicarmos as notícias, elas aparecerão aqui!</p>
+                        </div>
+                    }
+
                     {news.map((n) => (
                         <NewsListingCard
                             key={n.id}
@@ -87,8 +97,10 @@ function NewsListing() {
                             summary={n.resumo}
                             category={n.categoria}
                             author={n.autor}
-                            publishedAt={n.data}
+                            publishedAt={n.dataPublicacao}
                             img={getCategoryImage(n.categoria)}
+                            imgAlt={n.categoria}
+                            featured={news[0] == n}
                         />
                     ))}
                 </div>

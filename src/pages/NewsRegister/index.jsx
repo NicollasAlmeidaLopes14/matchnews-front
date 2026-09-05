@@ -6,7 +6,6 @@ import {
     MdArticle,
     MdCheckCircle,
     MdLink,
-    MdOutlineTipsAndUpdates,
     MdPersonOutline,
     MdPublish,
     MdTune,
@@ -59,7 +58,7 @@ function NewsRegister() {
 
             const dados = await response.json();
 
-            toast.success("Notícia cadastrada com sucesso!")
+            toast.success("Notícia publicada com sucesso!")
             return dados
         } catch (error) {
             console.error("Erro ao publicar a notícia: " + error)
@@ -87,7 +86,7 @@ function NewsRegister() {
                 <div className={styles.headingRow}>
                     <div>
                         <span className={styles.eyebrow}>MatchNews · Painel editorial</span>
-                        <h1 className={styles.title}>Cadastrar nova notícia</h1>
+                        <h1 className={styles.title}>Publicar nova notícia</h1>
                         <p className={styles.subtitle}>
                             Organize as informações da matéria antes de publicar para os leitores.
                         </p>
@@ -203,14 +202,6 @@ function NewsRegister() {
                             onChange={(e) => setSource(e.target.value)}
                         />
                     </NewsRegisterForm>
-
-                    <div className={styles.tipCard}>
-                        <MdOutlineTipsAndUpdates className={styles.tipIcon} aria-hidden="true" />
-                        <div>
-                            <strong>Antes de publicar</strong>
-                            <p>Revise nomes, datas e números. Uma fonte clara aumenta a confiança do leitor.</p>
-                        </div>
-                    </div>
                 </aside>
 
                 <footer className={styles.actionBar}>
