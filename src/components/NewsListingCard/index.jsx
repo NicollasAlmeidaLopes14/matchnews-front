@@ -1,4 +1,4 @@
-import { MdAccessTime, MdPersonOutline } from 'react-icons/md'
+import { MdAccessTime, MdDeleteOutline, MdPersonOutline } from 'react-icons/md'
 
 import styles from './styles.module.css'
 
@@ -10,6 +10,7 @@ function NewsListingCard({
     author,
     title,
     summary,
+    deletar,
     featured = false,
 }) {
     return (
@@ -17,6 +18,15 @@ function NewsListingCard({
             <div className={styles.imageWrapper}>
                 <img className={styles.image} src={img} alt={imgAlt} />
                 <span className={styles.categoryBadge}>{category}</span>
+
+                <button onClick={deletar}
+                    className={styles.deleteButton}
+                    type="button"
+                    aria-label={`Excluir a notícia "${title}"`}
+                >
+                    <MdDeleteOutline aria-hidden="true" />
+                    Excluir
+                </button>
             </div>
 
             <div className={styles.content}>

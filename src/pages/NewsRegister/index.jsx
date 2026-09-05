@@ -75,7 +75,7 @@ function NewsRegister() {
 
     return (
         <div className={styles.page}>
-            <ToastContainer autoClose={3500} hideProgressBar />
+            <ToastContainer autoClose={3000} hideProgressBar />
 
             <header className={styles.header}>
                 <Link className={styles.backLink} to="/">

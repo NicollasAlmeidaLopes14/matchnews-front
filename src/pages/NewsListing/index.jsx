@@ -12,6 +12,7 @@ import transferImage from '../../assets/transferencias.png'
 import youthFootballImage from '../../assets/futebol-base.png'
 
 import styles from './styles.module.css'
+import { toast, ToastContainer } from 'react-toastify'
 
 const categoryImages = {
     'ANÁLISE TÁTICA': tacticalAnalysisImage,
@@ -45,9 +46,32 @@ function NewsListing() {
         listarNoticias()
     }, [])
 
+    const deletarNoticia = async (id) => {
+        try {
+            const response = await fetch(
+                `http://localhost:8080/noticias/${id}`,
+                {
+                    method: "DELETE"
+                }
+            )
+
+            if (!response.ok) throw new Error("Erro HTTP: " + response.status);
+
+
+            const updatedNews = news.filter(n => n.id !== id)
+            setNews(updatedNews);
+
+            toast.success("Notícia deletada com sucesso!")
+        } catch (error) {
+            console.error("Erro ao deletar notícia", error)
+            toast.error("Não foi possível deletar a notícia")
+        }
+    }
+
     return (
         <div className={styles.page}>
             <SiteHeader />
+            <ToastContainer autoClose={3000} hideProgressBar />
 
             <header className={styles.header}>
                 <div className={styles.headerContent}>
@@ -101,6 +125,7 @@ function NewsListing() {
                             img={getCategoryImage(n.categoria)}
                             imgAlt={n.categoria}
                             featured={news[0] == n}
+                            deletar={() => deletarNoticia(n.id)}
                         />
                     ))}
                 </div>
