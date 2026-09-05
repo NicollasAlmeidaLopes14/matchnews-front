@@ -7,10 +7,9 @@ function NewsListingCard({
     img,
     imgAlt = '',
     publishedAt,
-    readTime,
     author,
     title,
-    description,
+    summary,
     featured = false,
 }) {
     return (
@@ -26,11 +25,10 @@ function NewsListingCard({
                         <MdAccessTime aria-hidden="true" />
                         {publishedAt}
                     </span>
-                    <span>{readTime}</span>
                 </div>
 
                 <h3 className={styles.title}>{title}</h3>
-                <p className={styles.description}>{description}</p>
+                <p className={styles.summary}>{summary}</p>
 
                 <div className={styles.author}>
                     <span className={styles.authorIcon}>

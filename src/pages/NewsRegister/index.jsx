@@ -54,9 +54,8 @@ function NewsRegister() {
             }
             )
 
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+
 
             const dados = await response.json();
 

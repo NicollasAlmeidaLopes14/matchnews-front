@@ -1,81 +1,50 @@
 import { MdOutlineArticle } from 'react-icons/md'
+import { useEffect, useState } from 'react'
 
 import NewsListingCard from '../../components/NewsListingCard'
 import SiteHeader from '../../components/SiteHeader'
-import testImage from '../../assets/Tecnico-do-Benfica-Jose-Mourinho-em-coletiva-de-imprensa-da-Champions-League-scaled-aspect-ratio-512-320-1.webp'
+
+import tacticalAnalysisImage from '../../assets/analise-tatica.png'
+import nationalFootballImage from '../../assets/futebol-nacional.png'
+import europeanFootballImage from '../../assets/futebol-europeu.png'
+import interviewImage from '../../assets/entrevista.png'
+import transferImage from '../../assets/transferencias.png'
+import youthFootballImage from '../../assets/futebol-base.png'
+
 import styles from './styles.module.css'
 
-const newsItems = [
-    {
-        id: 1,
-        category: 'Análise tática',
-        title: 'Como a nova formação mudou a dinâmica da equipe no meio-campo',
-        description: 'A comissão técnica apostou em mais mobilidade entre os setores e encontrou novas soluções para controlar o ritmo das partidas.',
-        publishedAt: 'Hoje, 10:30',
-        readTime: '5 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'José Mourinho durante uma entrevista coletiva',
-        featured: true,
-    },
-    {
-        id: 2,
-        category: 'Mercado da bola',
-        title: 'Clubes se movimentam nos últimos dias da janela de transferências',
-        description: 'Negociações avançam nos bastidores e podem definir reforços importantes para a sequência da temporada.',
-        publishedAt: 'Hoje, 09:15',
-        readTime: '4 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'Treinador falando com jornalistas em coletiva',
-    },
-    {
-        id: 3,
-        category: 'Campeonato nacional',
-        title: 'Rodada decisiva promete mudar a disputa pelas primeiras posições',
-        description: 'Confrontos diretos e equipes em boa fase aumentam a expectativa para os próximos jogos do campeonato.',
-        publishedAt: 'Ontem, 21:40',
-        readTime: '6 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'Entrevista coletiva antes de uma partida de futebol',
-    },
-    {
-        id: 4,
-        category: 'Futebol europeu',
-        title: 'Preparação para a Champions entra na reta final',
-        description: 'Treinadores ajustam detalhes antes dos confrontos que podem decidir o futuro das equipes na competição.',
-        publishedAt: 'Ontem, 18:20',
-        readTime: '3 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'Técnico durante coletiva de imprensa da Champions League',
-    },
-    {
-        id: 5,
-        category: 'Entrevista',
-        title: 'Técnico explica mudanças e projeta os próximos desafios',
-        description: 'Em entrevista coletiva, o comandante analisou a evolução do elenco e falou sobre o calendário da equipe.',
-        publishedAt: 'Ontem, 15:10',
-        readTime: '7 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'Técnico respondendo perguntas em uma coletiva de imprensa',
-    },
-    {
-        id: 6,
-        category: 'Categorias de base',
-        title: 'Jovens talentos ganham espaço e chamam atenção da comissão técnica',
-        description: 'Atletas formados no clube aproveitam oportunidades e se aproximam de uma vaga definitiva no time principal.',
-        publishedAt: 'Segunda, 11:00',
-        readTime: '4 min de leitura',
-        author: 'Redação MatchNews',
-        img: testImage,
-        imgAlt: 'Comissão técnica em entrevista sobre a formação da equipe',
-    },
-]
+const categoryImages = {
+    'ANÁLISE TÁTICA': tacticalAnalysisImage,
+    'MERCADO DA BOLA': transferImage,
+    'FUTEBOL EUROPEU': europeanFootballImage,
+    'CAMPEONATO NACIONAL': nationalFootballImage,
+    'ENTREVISTA': interviewImage,
+    'CATEGORIAS DE BASE': youthFootballImage
+}
+
+const getCategoryImage = (category) => {
+    return categoryImages[category]
+}
 
 function NewsListing() {
+    const [news, setNews] = useState([])
+
+    useEffect(() => {
+        const listarNoticias = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/noticias")
+
+                if (!response.ok) throw new Error(`Erro HTTP: ` + response.status);
+
+                const dados = await response.json()
+                setNews(dados)
+            } catch (error) {
+                console.error(`Erro ao listar notícias: ${error}`)
+            }
+        }
+        listarNoticias()
+    }, [])
+
     return (
         <div className={styles.page}>
             <SiteHeader />
@@ -93,7 +62,7 @@ function NewsListing() {
                     <div className={styles.totalBadge}>
                         <MdOutlineArticle aria-hidden="true" />
                         <div>
-                            <strong>{newsItems.length}</strong>
+                            <strong>{news.length}</strong>
                             <span>notícias publicadas</span>
                         </div>
                     </div>
@@ -107,12 +76,20 @@ function NewsListing() {
                         <h2>Notícias recentes</h2>
                     </div>
 
-                    <span className={styles.resultCount}>{newsItems.length} resultados</span>
+                    <span className={styles.resultCount}>{news.length} resultados</span>
                 </div>
 
                 <div className={styles.newsGrid}>
-                    {newsItems.map((news) => (
-                        <NewsListingCard key={news.id} {...news} />
+                    {news.map((n) => (
+                        <NewsListingCard
+                            key={n.id}
+                            title={n.titulo}
+                            summary={n.resumo}
+                            category={n.categoria}
+                            author={n.autor}
+                            publishedAt={n.data}
+                            img={getCategoryImage(n.categoria)}
+                        />
                     ))}
                 </div>
             </main>
